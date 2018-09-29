@@ -44,7 +44,7 @@ class App extends Component {
       </Jumbotron>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="#">Navbar</NavbarBrand>
-        <NavbarToggler onClick={this.toggleNavBar} />
+        <NavbarToggler onClick={()=>{this.toggleNavBar();}} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
