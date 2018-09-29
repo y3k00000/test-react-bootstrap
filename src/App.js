@@ -18,12 +18,12 @@ class YoutubeVideo extends Component{
   render(){
     return(
       <Media>
-        <div>
+        <Container fluid>
           <Player src={this.props.src||"http://www.youtube.com/embed/yUlTIAuDuJQ"} />
           <br />
           <PlayPause />
           <MuteUnmute />
-        </div>
+        </Container>
       </Media>
     );
   }
@@ -60,10 +60,10 @@ class YoutubeCarousel extends Component{
   }
   render(){
     return(
-      <Carousel activeIndex={this.state.activeIndex} next={()=>{this.next();}} previous={()=>{this.previous();}}>
+      <Carousel activeIndex={this.state.activeIndex} next={()=>{this.next();}} previous={()=>{this.previous();}} interval={false}>
         {this.getSrcList().map((src, index) => (
           <CarouselItem key={index} onExiting={()=>{this.exiting();}} onExited={()=>{this.exited();}}>
-          <YoutubeVideo ref={this.videos[index]} src={src} />
+            <YoutubeVideo ref={this.videos[index]} src={src} />
           </CarouselItem>)
         )}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={()=>{this.previous();}} />
@@ -93,7 +93,7 @@ class App extends Component {
         <p className="lead">
           <Button color="primary">Learn More</Button>
         </p>
-          <YoutubeCarousel srcList={["http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec", "http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec"]}/>
+        <YoutubeCarousel srcList={["http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec", "http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec"]}/>
       </Jumbotron>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="#">Navbar</NavbarBrand>
