@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Jumbotron, Button, Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Container, Row, Col, Carousel, CarouselItem, CarouselControl} from 'reactstrap';
+import ReactPlayer from 'react-player';
 import {Media, Player, controls} from 'react-media-player';
 const {PlayPause,MuteUnmute} = controls;
 
@@ -40,7 +41,7 @@ class YoutubeCarousel extends Component{
   next(){
     console.log("next()");
     this.setState({
-      activeIndex:this.state.activeIndex+1==this.getSrcList().length?0:this.state.activeIndex+1
+      activeIndex:this.state.activeIndex+1===this.getSrcList().length?0:this.state.activeIndex+1
     });
   }
   previous(){
@@ -63,7 +64,9 @@ class YoutubeCarousel extends Component{
       <Carousel activeIndex={this.state.activeIndex} next={()=>{this.next();}} previous={()=>{this.previous();}} interval={false}>
         {this.getSrcList().map((src, index) => (
           <CarouselItem key={index} onExiting={()=>{this.exiting();}} onExited={()=>{this.exited();}}>
-            <YoutubeVideo ref={this.videos[index]} src={src} />
+            <div className="player-wrapper">
+              <ReactPlayer ref={this.videos[index]} url={"https://www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
+            </div>
           </CarouselItem>)
         )}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={()=>{this.previous();}} />
