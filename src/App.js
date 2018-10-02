@@ -30,6 +30,16 @@ class YoutubeVideo extends Component{
   }
 }
 
+class ReactPlayerYoutube extends Component{
+  render(){
+    return (
+      <div className="player-wrapper">
+        <ReactPlayer url={this.props.src||"https://www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
+      </div>
+    );
+  }
+}
+
 class YoutubeCarousel extends Component{
   constructor(props){
     super(props);
@@ -61,16 +71,14 @@ class YoutubeCarousel extends Component{
   }
   render(){
     return(
-      <Carousel activeIndex={this.state.activeIndex} next={()=>{this.next();}} previous={()=>{this.previous();}} interval={false}>
+      <Carousel activeIndex={this.state.activeIndex} next={this.next.bind(this)} previous={this.previous.bind(this)} interval={false}>
         {this.getSrcList().map((src, index) => (
-          <CarouselItem key={index} onExiting={()=>{this.exiting();}} onExited={()=>{this.exited();}}>
-            <div className="player-wrapper">
-              <ReactPlayer ref={this.videos[index]} url={"https://www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
-            </div>
+          <CarouselItem key={index} onExiting={this.exiting.bind(this)} onExited={this.exited.bind(this)}>
+            <YoutubeVideo src={src} />
           </CarouselItem>)
         )}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={()=>{this.previous();}} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={()=>{this.next();}} />
+        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous.bind(this)} />
+        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next.bind(this)} />
       </Carousel>
     );
   }
