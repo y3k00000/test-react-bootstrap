@@ -23,7 +23,7 @@ class YoutubeVideo extends Component{
     return(
       <Media>
         <Container fluid>
-          <Player src={this.props.src||"http://www.youtube.com/embed/yUlTIAuDuJQ"} />
+          <Player src={this.props.src||"//www.youtube.com/embed/yUlTIAuDuJQ"} />
           <br />
           <PlayPause />
           <MuteUnmute />
@@ -66,7 +66,7 @@ class ReactPlayerYoutube extends Component{
   render(){
     return (
       <div className="player-wrapper">
-        <ReactPlayer url={this.props.src||"https://www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
+        <ReactPlayer url={this.props.src||"//www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
       </div>
     );
   }
@@ -153,7 +153,7 @@ class App extends Component {
         <p className="lead">
           <Button color="primary">Learn More</Button>
         </p>
-        <YoutubeCarousel srcList={["http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec", "http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec"]}/>
+        <YoutubeCarousel srcList={["//www.youtube.com/embed/yUlTIAuDuJQ", "//www.youtube.com/embed/o7SZkwSmIec", "//www.youtube.com/embed/yUlTIAuDuJQ", "//www.youtube.com/embed/o7SZkwSmIec"]}/>
       </Jumbotron>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="#">Navbar</NavbarBrand>
