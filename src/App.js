@@ -52,6 +52,16 @@ class PureYoutubeVideo extends Component{
   }
 }
 
+class YoutubeIFrame extends Component{
+  render(){
+    return (
+      <div className="embed-responsive embed-responsive-16by9">
+        <iframe className="embed-responsive-item" src={this.props.src}></iframe>
+      </div>
+    );
+  }
+}
+
 class ReactPlayerYoutube extends Component{
   render(){
     return (
@@ -59,6 +69,12 @@ class ReactPlayerYoutube extends Component{
         <ReactPlayer url={this.props.src||"https://www.youtube.com/watch?v=yUlTIAuDuJQ"} style={{width:'100%',height:'100%'}} />
       </div>
     );
+  }
+}
+
+class YoutubeSequence extends Component{
+  render(){
+    return (<div>{this.props.srcList.map((src, index) => (<YoutubeIFrame src={src} />))}</div>)
   }
 }
 
@@ -96,7 +112,7 @@ class YoutubeCarousel extends Component{
       <Carousel activeIndex={this.state.activeIndex} next={this.next.bind(this)} previous={this.previous.bind(this)} interval={false}>
         {this.getSrcList().map((src, index) => (
           <CarouselItem key={index} onExiting={this.exiting.bind(this)} onExited={this.exited.bind(this)}>
-            <PureYoutubeVideo src={src} />
+            <YoutubeIFrame src={src} />
           </CarouselItem>)
         )}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous.bind(this)} />
