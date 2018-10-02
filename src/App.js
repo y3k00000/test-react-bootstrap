@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Jumbotron, Button, Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Container, Row, Col, Carousel, CarouselItem, CarouselControl} from 'reactstrap';
+import { Jumbotron, Button, Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Container, Row, Col, Carousel, CarouselItem, CarouselControl, Card, CardBody, CardSubtitle, CardText} from 'reactstrap';
 import ReactPlayer from 'react-player';
 import {Media, Player, controls} from 'react-media-player';
 import Youtube from 'react-youtube';
@@ -39,8 +39,6 @@ class PureYoutubeVideo extends Component{
       <Youtube
         videoId={this.props.src?urlParser.parse(this.props.src).id:"2g811Eo7K8U"}
         opts={{
-          height: '128',
-          width: '72',
           playerVars: { // https://developers.google.com/youtube/player_parameters
             autoplay: 1
           }
@@ -113,7 +111,7 @@ class App extends Component {
     super(props);
     this.state = {
       isOpen : false,
-      message : "N/A"
+      message : "N/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/AN/A"
     }
   }
   componentWillMount(){
@@ -140,9 +138,6 @@ class App extends Component {
           <Button color="primary">Learn More</Button>
         </p>
         <YoutubeCarousel srcList={["http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec", "http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec"]}/>
-        <p>
-          {this.state.message}
-        </p>
       </Jumbotron>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="#">Navbar</NavbarBrand>
@@ -198,6 +193,18 @@ class App extends Component {
             <p>Some text..</p>
             <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
           </Col>
+        </Row>
+        <Row>
+          <Card>
+            <CardBody>
+              <CardSubtitle>
+                Line Info
+              </CardSubtitle>
+              <CardText>
+                {this.state.message}
+              </CardText>
+            </CardBody>
+          </Card>
         </Row>
       </Container>
       <Jumbotron className="text-center" style={{marginBottom:0}}>
