@@ -35,17 +35,16 @@ class YoutubeVideo extends Component{
 
 class PureYoutubeVideo extends Component{
   render() {
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-      }
-    };
     return (
       <Youtube
         videoId={this.props.src?urlParser.parse(this.props.src).id:"2g811Eo7K8U"}
-        opts={opts}
+        opts={{
+          height: '128',
+          width: '72',
+          playerVars: { // https://developers.google.com/youtube/player_parameters
+            autoplay: 1
+          }
+        }}
         onReady={this._onReady}
       />
     );
@@ -113,7 +112,18 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isOpen : false
+      isOpen : false,
+      message : "N/A"
+    }
+  }
+  componentWillMount(){
+    var self = this;
+    if(window.liff){
+      window.liff.init(function (data) {
+        self.setState({
+          message:JSON.stringify(data)
+        })
+      });
     }
   }
   toggleNavBar(){
@@ -130,6 +140,9 @@ class App extends Component {
           <Button color="primary">Learn More</Button>
         </p>
         <YoutubeCarousel srcList={["http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec", "http://www.youtube.com/embed/yUlTIAuDuJQ", "http://www.youtube.com/embed/o7SZkwSmIec"]}/>
+        <p>
+          {this.state.message}
+        </p>
       </Jumbotron>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="#">Navbar</NavbarBrand>
