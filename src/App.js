@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Jumbotron, Button, Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Container, Row, Col, Carousel, CarouselItem, CarouselControl} from 'reactstrap';
 import ReactPlayer from 'react-player';
 import {Media, Player, controls} from 'react-media-player';
+import Youtube from 'react-youtube';
+import urlParser from "js-video-url-parser/lib/base";
+import 'js-video-url-parser/lib/provider/youtube';
 const {PlayPause,MuteUnmute} = controls;
 
 class FakeImage extends Component {
@@ -27,6 +30,28 @@ class YoutubeVideo extends Component{
         </Container>
       </Media>
     );
+  }
+}
+
+class PureYoutubeVideo extends Component{
+  render() {
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
+    return (
+      <Youtube
+        videoId={this.props.src?urlParser.parse(this.props.src).id:"2g811Eo7K8U"}
+        opts={opts}
+        onReady={this._onReady}
+      />
+    );
+  }
+  _onReady(event) {
+    // event.target.pauseVideo();
   }
 }
 
@@ -74,7 +99,7 @@ class YoutubeCarousel extends Component{
       <Carousel activeIndex={this.state.activeIndex} next={this.next.bind(this)} previous={this.previous.bind(this)} interval={false}>
         {this.getSrcList().map((src, index) => (
           <CarouselItem key={index} onExiting={this.exiting.bind(this)} onExited={this.exited.bind(this)}>
-            <YoutubeVideo src={src} />
+            <PureYoutubeVideo src={src} />
           </CarouselItem>)
         )}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous.bind(this)} />
