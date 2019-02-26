@@ -56,7 +56,7 @@ class YoutubeIFrame extends Component{
   render(){
     return (
       <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={this.props.src}></iframe>
+        <iframe title="youtube-player" className="embed-responsive-item" src={this.props.src}></iframe>
       </div>
     );
   }
@@ -147,7 +147,7 @@ class App extends Component {
     return (
     <div>
       <Jumbotron className="text-center" style={{"marginBottom":0}}>
-        <img className="App-logo" src={logo}></img>
+        <img className="App-logo" alt="LOGO" src={logo}></img>
         <h1>My First Bootstrap 4 Page</h1>
         <p>Resize this responsive page to see the effect!</p>
         <p className="lead">
